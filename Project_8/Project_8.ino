@@ -1,8 +1,8 @@
 const int switchPin = 8;
 unsigned long previousTime = 0;
-int switchState = 0;
-int prevSwitchState = 0;
-int led = 2;
+short switchState = 0;
+short prevSwitchState = 0;
+short led = 2;
 long interval = 10000;
 
 void setup() {
@@ -19,7 +19,11 @@ void loop() {
     digitalWrite(led, HIGH);
     led++;
     if (led == 7) {
-      
+      for (int i = 2; i < 8; i++) {
+      digitalWrite(i, LOW);
+    }
+    led = 2;
+    previousTime = currentTime;
     }
   }
   switchState = digitalRead(switchPin);
