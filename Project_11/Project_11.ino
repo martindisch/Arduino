@@ -5,7 +5,8 @@ const int switchPin = 6;
 const int contrastPin = 9;
 int switchState = 0;
 int prevSwitchState = 0;
-int reply;
+int reply = 0;
+int prevReply = 0;
 
 void setup() {
   Serial.begin(9600);
@@ -23,7 +24,10 @@ void loop() {
   switchState = digitalRead(switchPin);
   if (switchState != prevSwitchState) {
     if (switchState == LOW) {
-      reply = random(8);
+      while (reply == prevReply) {
+        reply = random(8);
+      }
+      prevReply = reply;
       lcd.clear();
       lcd.setCursor(0, 0);
       lcd.print("The ball says:");
