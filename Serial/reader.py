@@ -1,6 +1,5 @@
 import serial
 import time
-ser = serial.Serial('COM3', 9600, timeout=0)
 
 def receiving(ser):
     global last_received
@@ -16,6 +15,12 @@ def receiving(ser):
             buffer_string = lines[-1]
             return last_received
 
+ser = serial.Serial('COM3', 9600, timeout=0)
+# Don't write immediately, the Arduino is restarting
+time.sleep(1.5)
+
+command = raw_input("Enter command: ")
+ser.write(command)
+
 while 1:
     print receiving(ser)
-    
