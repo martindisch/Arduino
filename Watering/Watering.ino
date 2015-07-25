@@ -4,8 +4,9 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 const int contrastPin = 6;
 const int contrast = 40;
 
-const int gate = 7;
+const int gate = 9;
 int mode = 0;
+int outputValue;
 
 void setup() {
   Serial.begin(9600);
@@ -27,8 +28,9 @@ void loop() {
       digitalWrite(gate, LOW);
     }
     else {
-      digitalWrite(gate, HIGH);
+      startMotor();
     }
+    delay(500);
     lcd.clear();
     lcd.setCursor(0, 0);
     lcd.print("New value ");
@@ -37,3 +39,13 @@ void loop() {
     lcd.write("Enter 0 or 1");
   }
 }
+
+void startMotor() {
+  outputValue = 0;
+  while (outputValue < 256) {
+    analogWrite(gate, outputValue);
+    outputValue++;
+    delay(10);
+  }
+}
+
