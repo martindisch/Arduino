@@ -46,6 +46,8 @@ void readTemp() {
 }
 
 void readLight() {
-  
+  tempVal = analogRead(lightPin);
+  Serial.print("Light: ");
+  Serial.println(tempVal);
 }
 
