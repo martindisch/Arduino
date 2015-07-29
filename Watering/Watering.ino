@@ -1,7 +1,10 @@
+#include <CapacitiveSensor.h>
+
 const int gatePin = 11;
 const int tempPin = A0;
 const int lightPin = A1;
 int mode, tempVal, outputValue;
+CapacitiveSensor capSensor = CapacitiveSensor(4, 2);
 
 void setup() {
   Serial.begin(9600);
@@ -27,6 +30,8 @@ void loop() {
   readTemp();
   delay(10);
   readLight();
+  delay(10);
+  readTouch();
   delay(500);
 }
 
@@ -48,6 +53,12 @@ void readTemp() {
 void readLight() {
   tempVal = analogRead(lightPin);
   Serial.print("Light: ");
+  Serial.println(tempVal);
+}
+
+void readTouch() {
+  tempVal = capSensor.capacitiveSensor(30);
+  Serial.print("Cap value: ");
   Serial.println(tempVal);
 }
 
