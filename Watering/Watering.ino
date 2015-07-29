@@ -1,10 +1,13 @@
-const int gate = 11;
-int mode = 0;
-int outputValue;
+const int gatePin = 11;
+const int tempPin = A0;
+const int lightPin = A1;
+int mode, tempVal, outputValue;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(gate, OUTPUT);
+  pinMode(gatePin, OUTPUT);
+  pinMode(tempPin, INPUT);
+  pinMode(lightPin, INPUT);
   Serial.println("Enter 0 or 1");
 }
 
@@ -13,7 +16,7 @@ void loop() {
     mode = Serial.parseInt();
     if (mode == 0) {
       Serial.println("Stopping motor");
-      digitalWrite(gate, LOW);
+      digitalWrite(gatePin, LOW);
     }
     else {
       Serial.println("Starting motor");
@@ -21,15 +24,28 @@ void loop() {
     }
     delay(500);
   }
-  delay(50);
+  readTemp();
+  delay(10);
+  readLight();
+  delay(500);
 }
 
 void startMotor() {
   outputValue = 0;
   while (outputValue < 256) {
-    analogWrite(gate, outputValue);
+    analogWrite(gatePin, outputValue);
     outputValue++;
     delay(10);
   }
+}
+
+void readTemp() {
+  tempVal = analogRead(tempPin);
+  Serial.print("Temperature: ");
+  Serial.println(map(tempVal, 0, 1023, -50, 450));
+}
+
+void readLight() {
+  
 }
 
