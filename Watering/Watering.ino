@@ -13,7 +13,7 @@ void setup() {
   pinMode(tempPin, INPUT);
   pinMode(lightPin, INPUT);
   pinMode(greenLED, OUTPUT);
-  Serial.println("Enter 0 or 1");
+  //Serial.println("Enter 0 or 1");
 }
 
 void loop() {
@@ -30,12 +30,12 @@ void loop() {
     }
     delay(500);
   }
-  /*readTemp();
+  readTemp();
   delay(10);
   readLight();
   delay(10);
-  readTouch();*/
-  delay(500);
+  //readTouch();
+  delay(600000);
 }
 
 void startMotor() {
