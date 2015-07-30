@@ -21,3 +21,6 @@ time.sleep(1.5)
 
 while 1:
     print dateTime() + receiving(ser)
+    time.sleep(2) # Give it some time
+    print dateTime() + receiving(ser)
+    time.sleep(570)
