@@ -20,6 +20,8 @@ ser = serial.Serial('/dev/ttyACM0', 9600)
 time.sleep(1.5)
 
 while 1:
+    ser.write(2)
     print dateTime() + receiving(ser)
+    ser.write(3)
     print dateTime() + receiving(ser)
-    time.sleep(570)
+    time.sleep(10)
