@@ -3,7 +3,7 @@ import serial, time
 dataInterval = 10
 waterInterval = 20
 counter = waterInterval
-motorTime = 3
+motorTime = 1
 
 def receiving(ser):
     global last_received
