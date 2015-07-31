@@ -17,11 +17,11 @@ def dateTime():
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 # Don't write immediately, the Arduino is restarting
-time.sleep(1.5)
+time.sleep(3)
 
 while 1:
-    ser.write(2)
+    ser.write('2')
     print dateTime() + receiving(ser)
-    ser.write(3)
+    ser.write('3')
     print dateTime() + receiving(ser)
-    time.sleep(10)
+    time.sleep(600)

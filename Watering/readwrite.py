@@ -14,9 +14,7 @@ def receiving(ser):
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 # Don't write immediately, the Arduino is restarting
-time.sleep(1.5)
-
-print receiving(ser)
+time.sleep(3)
 
 while 1:
     asd = raw_input('New command: ')
