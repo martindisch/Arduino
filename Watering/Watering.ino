@@ -43,14 +43,15 @@ void loop() {
 }
 
 void startMotor() {
+  digitalWrite(greenLED, HIGH);
   motorOn = true;
-  outputValue = 0;
+  /*outputValue = 0;
   while (outputValue < 256) {
     analogWrite(gatePin, outputValue);
     outputValue++;
     delay(10);
-  }
-  digitalWrite(greenLED, HIGH);
+  }*/
+  digitalWrite(gatePin, HIGH);
 }
 
 void readTemp() {
