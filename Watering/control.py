@@ -1,5 +1,10 @@
 import serial, time
 
+dataInterval = 10
+waterInterval = 20
+counter = waterInterval
+motorTime = 3
+
 def receiving(ser):
     global last_received
     buffer_string = ''
@@ -14,14 +19,25 @@ def receiving(ser):
 def dateTime():
     return time.strftime("%Y/%m/%d %H:%M:%S  ")
 
+def getOut():
+    print dateTime() + receiving(ser)
+
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
 # Don't write immediately, the Arduino is restarting
-time.sleep(1.5)
-
-print dateTime() + receiving(ser)
+time.sleep(3)
 
 while 1:
-    asd = raw_input(dateTime() + "New command: ")
-    ser.write(asd)
-    print dateTime() + receiving(ser)
+    ser.write('2')
+    getOut()
+    ser.write('3')
+    getOut()
+    if (counter >= waterInterval):
+        ser.write('1')
+        getOut()
+        time.sleep(motorTime)
+        ser.write('0')
+        getOut()
+        counter = 0
+    counter += dataInterval
+    time.sleep(dataInterval)
