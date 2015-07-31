@@ -23,7 +23,7 @@ void loop() {
     switch (command) {
       case 0:
         Serial.println("Stopping motor");
-        //digitalWrite(gatePin, LOW);
+        digitalWrite(gatePin, LOW);
         motorOn = false;
         digitalWrite(greenLED, LOW);
       break;
@@ -44,12 +44,12 @@ void loop() {
 
 void startMotor() {
   motorOn = true;
-  /*outputValue = 0;
+  outputValue = 0;
   while (outputValue < 256) {
     analogWrite(gatePin, outputValue);
     outputValue++;
     delay(10);
-  }*/
+  }
   digitalWrite(greenLED, HIGH);
 }
 
