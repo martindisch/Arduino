@@ -4,7 +4,8 @@ const int gatePin = 11;
 const int tempPin = A0;
 const int lightPin = A1;
 const int greenLED = 8;
-int mode, tempVal, outputValue;
+int command, tempVal, outputValue;
+bool motorOn = false;
 CapacitiveSensor capSensor = CapacitiveSensor(4, 2);
 
 void setup() {
@@ -18,27 +19,31 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    mode = Serial.parseInt();
-    if (mode == 0) {
-      Serial.println("Stopping motor");
-      //digitalWrite(gatePin, LOW);
-      digitalWrite(greenLED, LOW);
+    command = Serial.parseInt();
+    switch (command) {
+      case 0:
+        Serial.println("Stopping motor");
+        //digitalWrite(gatePin, LOW);
+        motorOn = false;
+        digitalWrite(greenLED, LOW);
+      break;
+      case 1:
+        Serial.println("Starting motor");
+        startMotor();
+      break;
+      case 2:
+        readTemp();
+      break;
+      case 3:
+        readLight();
+      break;
     }
-    else {
-      Serial.println("Starting motor");
-      startMotor();
-    }
-    delay(500);
   }
-  readTemp();
-  delay(10);
-  readLight();
-  delay(10);
-  //readTouch();
-  delay(600000);
+  delay(500);
 }
 
 void startMotor() {
+  motorOn = true;
   /*outputValue = 0;
   while (outputValue < 256) {
     analogWrite(gatePin, outputValue);
