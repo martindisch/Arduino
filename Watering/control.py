@@ -3,7 +3,7 @@ import serial, time
 dataInterval = 10
 waterInterval = 20
 counter = waterInterval
-motorTime = 1
+motorTime = 15
 
 def receiving(ser):
     global last_received
@@ -32,12 +32,14 @@ while 1:
     getOut()
     ser.write('3')
     getOut()
-    if (counter >= waterInterval):
-        ser.write('1')
-        getOut()
-        time.sleep(motorTime)
-        ser.write('0')
-        getOut()
-        counter = 0
+    ser.write('4')
+    getOut()
+    #if (counter >= waterInterval):
+    #    ser.write('1')
+    #    getOut()
+    #    time.sleep(motorTime)
+    #    ser.write('0')
+    #    getOut()
+    #    counter = 0
     counter += dataInterval
     time.sleep(dataInterval)
