@@ -37,6 +37,9 @@ void loop() {
       case 3:
         readLight();
       break;
+      case 4:
+        readCap();
+      break;
     }
   }
   delay(500);
@@ -66,7 +69,7 @@ void readLight() {
   Serial.println(tempVal);
 }
 
-void readTouch() {
+void readCap() {
   tempVal = capSensor.capacitiveSensor(30);
   Serial.print("Cap value: ");
   Serial.println(tempVal);
