@@ -14,7 +14,7 @@ void setup() {
   pinMode(tempPin, INPUT);
   pinMode(lightPin, INPUT);
   pinMode(greenLED, OUTPUT);
-  //Serial.println("Enter 0 or 1");
+  capSensor.set_CS_AutocaL_Millis(0xFFFFFFFF);
 }
 
 void loop() {
