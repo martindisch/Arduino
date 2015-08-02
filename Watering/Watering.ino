@@ -14,7 +14,6 @@ void setup() {
   pinMode(tempPin, INPUT);
   pinMode(lightPin, INPUT);
   pinMode(greenLED, OUTPUT);
-  capSensor.set_CS_AutocaL_Millis(0xFFFFFFFF);
 }
 
 void loop() {
@@ -70,7 +69,7 @@ void readLight() {
 }
 
 void readCap() {
-  tempVal = capSensor.capacitiveSensor(30);
+  tempVal = capSensor.capacitiveSensorRaw(30);
   Serial.print("Cap value: ");
   Serial.println(tempVal);
 }
