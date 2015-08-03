@@ -2,6 +2,7 @@ import serial, time, numpy
 
 watchTime = 3600
 measureInterval = 5
+calcTime = 1.5
 
 def receiving(ser):
     global last_received
@@ -41,4 +42,4 @@ while 1:
     value = int(message[-4:])
     values += (value,)
     timePassed += measureInterval        
-    time.sleep(measureInterval)
+    time.sleep(measureInterval - calcTime)
