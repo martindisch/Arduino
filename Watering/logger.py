@@ -32,6 +32,7 @@ while 1:
         f = open(os.path.expanduser('~') + "/waterlog.txt")
         f.write(startDate + " - " + dateTime() + "    " + str(numpy.mean(values)))        
         f.close()
+        print dateTime() + "    Wrote to file successfully"
         timePassed = 0
         values = ()
         startDate = "none"
