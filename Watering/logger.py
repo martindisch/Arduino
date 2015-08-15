@@ -1,4 +1,4 @@
-import serial, time, numpy
+import os, serial, time, numpy
 
 watchTime = 3600
 measureInterval = 5
@@ -29,7 +29,9 @@ startDate = "none"
 
 while 1:
     if timePassed >= watchTime:
-        print startDate + " - " + dateTime() + "    " + str(numpy.mean(values))        
+        f = open(os.path.expanduser('~') + "/waterlog.txt")
+        f.write(startDate + " - " + dateTime() + "    " + str(numpy.mean(values)))        
+        f.close()
         timePassed = 0
         values = ()
         startDate = "none"
