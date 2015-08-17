@@ -29,8 +29,8 @@ startDate = "none"
 
 while 1:
     if timePassed >= watchTime:
-        f = open(os.path.expanduser('~') + "/waterlog.txt")
-        f.write(startDate + " - " + dateTime() + "    " + str(numpy.mean(values)))        
+        f = open(os.path.expanduser('~') + "/waterlog.txt", 'a')
+        f.write(startDate + " - " + dateTime() + "    " + str(numpy.mean(values)) + "\n")        
         f.close()
         print dateTime() + "    Wrote to file successfully"
         timePassed = 0
